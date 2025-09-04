@@ -1,7 +1,0 @@
-function u(n){const a=["cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve"];return a[n];}
-function d(n){const a=["","diez","veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"];if(n<10)return u(n);if(n<=15){const m={10:"diez",11:"once",12:"doce",13:"trece",14:"catorce",15:"quince"};return m[n];}if(n<20)return "dieci"+u(n-10);if(n===20)return "veinte";if(n<30)return "veinti"+u(n-20);const dec=Math.floor(n/10),uni=n%10;return uni?a[dec]+" y "+u(uni):a[dec];}
-function c(n){const a=["","cien","doscientos","trescientos","cuatrocientos","quinientos","seiscientos","setecientos","ochocientos","novecientos"];if(n<100)return d(n);if(n===100)return "cien";const cen=Math.floor(n/100),r=n%100;return a[cen]+(r?" "+d(r):"");}
-export function num2words(n){n=Math.floor(Number(n)||0);if(n===0)return "cero";if(n<1000)return c(n);if(n<1e6){const m=Math.floor(n/1000),r=n%1000;const mt=(m===1)?"mil":num2words(m)+" mil";return r?mt+" "+c(r):mt;}if(n<1e9){const M=Math.floor(n/1e6),r=n%1e6;const t=(M===1)?"un millón":num2words(M)+" millones";if(r===0)return t;if(r<1000)return t+" "+c(r);return t+" "+num2words(r);}return String(n);}
-export function aGuaranies(n){return num2words(n)+" guaraníes";}
-export function onlyDigits(v){return String(v||"").replace(/\D/g,"");}
-export function miles(n){try{const x=Number(onlyDigits(n))||0;return x.toLocaleString("es-PY");}catch{return String(n);}}
